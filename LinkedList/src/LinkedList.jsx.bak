@@ -1,0 +1,105 @@
+// src/LinkedList.js
+import React, { useState, useRef } from 'react';
+import Node from './Node';
+import './LinkedList.css';
+
+// 💡 Вспомогательный класс для логики узла (не React-компонент)
+class ListNode {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+const LinkedList = () => {
+  // Состояние: хранит голову списка (первый узел)
+  const [head, setHead] = useState(null);
+  const inputRef = useRef(null); // Ссылка для получения значения из поля ввода
+
+  /**
+   * ➕ Логика добавления нового узла в конец списка.
+   */
+  const addNode = () => {
+    // Получаем и очищаем введенное значение
+    const value = inputRef.current.value.trim();
+    if (value === '') return; // Игнорировать пустое значение
+    inputRef.current.value = '';
+
+    const newNode = new ListNode(value);
+
+    // 1. Если список пуст, новый узел становится головой.
+    if (!head) {
+      setHead(newNode);
+      return;
+    }
+
+    // 2. Иначе, ищем последний узел (хвост).
+    let current = head;
+    while (current.next) {
+      current = current.next;
+    }
+
+    // 3. Добавляем новый узел в конец.
+    current.next = newNode;
+
+    // ❗ Важно: Для принудительного обновления React-компонента
+    // создаем новую копию головы списка (или любого объекта в цепочке).
+    // Это гарантирует, что React увидит изменение состояния.
+    setHead({ ...head });
+  };
+
+  /**
+   * 🖼️ Логика рендеринга (визуализации) списка.
+   */
+  const renderList = () => {
+    const nodes = [];
+    let current = head;
+
+    while (current) {
+      // Определяем, является ли текущий узел хвостом (последним)
+      const isTail = current.next === null;
+
+      // Добавляем React-компонент узла
+      nodes.push(
+        <Node
+          key={nodes.length} // Уникальный ключ для React-элементов
+          value={current.value}
+          isTail={isTail}
+        />
+      );
+      current = current.next;
+    }
+    return nodes;
+  };
+
+  return (
+    <div className="linked-list-app">
+      <h2>Линейный Связный Список</h2>
+
+      {/* ➡️ Элементы управления */}
+      <div className="controls">
+        <input
+          type="text"
+          ref={inputRef}
+          placeholder="Значение узла"
+        />
+        <button onClick={addNode}>
+          ➕ Добавить узел в конец
+        </button>
+      </div>
+
+      <hr />
+
+      {/* 🖼️ Визуализация списка */}
+      <div className="list-visualization">
+        {head ? (
+          renderList()
+        ) : (
+          <p className="empty-list">Список пуст. Добавьте первый узел.</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default LinkedList;

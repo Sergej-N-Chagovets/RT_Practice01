@@ -1,0 +1,131 @@
+/* src/Node.css */
+.node-container {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.node-box {
+  background-color: #007bff;
+  color: white;
+  border: 2px solid #0056b3;
+  padding: 10px 20px;
+  min-width: 50px;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.pointer-arrow {
+  font-size: 30px;
+  color: #333;
+  margin: 0 10px;
+  font-weight: bold;
+}
+
+.null-indicator {
+  font-family: monospace;
+  font-size: 16px;
+  color: #cc0000;
+  margin-left: 10px;
+  padding: 5px;
+  border: 1px dashed #cc0000;
+  border-radius: 4px;
+}
+
+/* src/LinkedList.css */
+.linked-list-app {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.controls {
+  margin-bottom: 20px;
+}
+
+.controls input {
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.controls button {
+  padding: 8px 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.list-visualization {
+  display: flex;
+  flex-wrap: wrap; /* Позволяет переносить элементы на новую строку */
+  align-items: center;
+  border: 1px dashed #aaa;
+  padding: 15px;
+  min-height: 80px;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.empty-list {
+  color: #6c757d;
+}
+/* src/LinkedList.css */
+/* ... (оставляем старые стили) ... */
+
+.controls {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px; /* Добавляем небольшое расстояние между элементами */
+  align-items: center;
+}
+
+.controls input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.controls button {
+  padding: 8px 15px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Стили для кнопок добавления */
+.controls button:nth-child(2) {
+    background-color: #007bff; /* Prepend (синий) */
+}
+.controls button:nth-child(3) {
+    background-color: #28a745; /* Append (зеленый) */
+}
+
+/* Стили для кнопок удаления */
+.remove-controls button:nth-child(1) {
+    background-color: #ffc107; /* Remove Tail (желтый) */
+    color: #333;
+}
+.remove-controls button:nth-child(3) {
+    background-color: #dc3545; /* Remove by Value (красный) */
+}
+
+.list-visualization {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 1px dashed #aaa;
+  padding: 15px;
+  min-height: 80px;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.empty-list {
+  color: #6c757d;
+}
